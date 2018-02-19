@@ -1,5 +1,10 @@
-/*This is a rainbow instrument that changes colour/visuals
-depending on the note and type of sound :) */
+// This is a rainbow instrument that changes colour/visuals
+// depending on the note and type of sound :)
+
+// Click to start/stop sound.
+// Press keys A,S,D,F,G,H,J,K for different notes.
+// Press 1-4 for different sounds.
+// Move mouse horizontally to control volume.
 
 var osc;
 var oscType = 'sine';
@@ -74,9 +79,14 @@ function setup() {
 
 function draw() {
   background(66, 134, 244);
-
-  //code for running visuals
+  
+  var volume = map(mouseX, 0, height, 0, 1);
+  volume = constrain(volume,0,1);
+  
   if (play) {
+    //volume
+  	osc.amp(volume);
+    //visuals
     fill(c);
     if (sineTrue) {
       circles();
@@ -89,11 +99,11 @@ function draw() {
     }
   }
 
-  //text
-  fill('black');
-  noStroke();
-  textAlign(CENTER);
-  text('Click to play! \nPress keys A,S,D,F,G,H,J,K for different notes. \nPress 1 - 4 for different sounds.', 150, 35);
+  // //text
+  // fill('black');
+  // noStroke();
+  // textAlign(CENTER);
+  // text('Click to play! \nPress keys A,S,D,F,G,H,J,K for different notes. \nPress 1 - 4 for different sounds.', 150, 35);
 
 }
 
